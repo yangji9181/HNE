@@ -55,4 +55,4 @@ Each dataset contains:
 
 ### record.dat
 
-- In each paragraph, the first line tells the set of training parameters and the second line tells the evaluation results.
+- In each paragraph, the first line tells the model and evaluation settings, the second line tells the set of training parameters, and the third line tells the evaluation results.

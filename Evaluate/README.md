@@ -12,7 +12,7 @@ Users need to specify the following parameters in ```evaluate.sh```:
 *Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.*
 
 **Node Classification**: <br /> 
-We train a separate linear Support Vector Machine (LinearSVC) based on the learned embeddings on 80% of the labeled nodes and predict on the remaining 20%. We repeat the process for standard five-fold cross validation and compute the average scores regarding **macro-F1** (across all labels) and **micro-F1** (across all nodes).
+We train a separate linear Support Vector Machine (LinearSVC) based on the learned embeddings on 80% of the labeled nodes and predict on the remaining 20%. We repeat the process for standard five-fold cross validation and compute the average scores regarding **Macro-F1** (across all labels) and **Micro-F1** (across all nodes).
 
 **Link Prediction**: <br /> 
 We use the Hadamard function to construct feature vectors for node pairs, train a two-class LinearSVC on the 80% training links and evaluate towards the 20% held out links. We repeat the process for standard five-fold cross validation and compute the average scores regarding **AUC** (area under the ROC curve) and **MRR** (mean reciprocal rank).
