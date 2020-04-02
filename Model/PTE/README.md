@@ -29,10 +29,10 @@ mv eigen-eigen-67e894c6cd8f eigen-3.3.3
 
 ### Input
 
-This implementation takes 3 input files:
-- ```data/${dataset}/node.dat```: Each line describes the id (string) a node.
-- ```data/${dataset}/link.dat```: Each line describes the head node id, the tail node id, the type, and the weight of a link, which are separated by empty spaces.
-- ```data/${dataset}/type.dat```: There is only one line in this file, which describes the number of different link types in the targeting dataset.
+*Stage 2: Transform* prepares 3 input files stored in ```data/${dataset}```:
+- ```node.dat```: Each line describes the id (string) a node.
+- ```link.dat```: Each line describes the head node id, the tail node id, the type, and the weight of a link, which are separated by empty spaces.
+- ```type.dat```: There is only one line in this file, which describes the number of different link types in the targeting dataset.
 
 ### Run
 
@@ -41,5 +41,5 @@ Run ```bash run.sh``` to start training.
 
 ### Output
 
-This implementation generates 1 output file:
-- ```data/${dataset}/emb.dat```: The first line specifies the parameters used in training. Each following line describes the id and the embeddings of a node. The id and the embeddings are separated by ```\t```. Entries in the embeddings are separated by ``` ```.
+This implementation generates 1 output file stored in ```data/${dataset}```:
+- ```emb.dat```: The first line specifies the parameters used in training. Each following line describes the id and the embeddings of a node. The id and the embeddings are separated by ```\t```. Entries in the embeddings are separated by ``` ```.
