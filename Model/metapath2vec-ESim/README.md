@@ -40,8 +40,8 @@ mv eigen-eigen-67e894c6cd8f eigen-3.3.3
 ### Input
 
 *Stage 2: Transform* prepares 3 input files stored in ```data/${dataset}```:
-- ```node.dat```: Each line describes the id (string) and the type (char) of a node, which are separated by an empty space.
-- ```link.dat```: Each line describes the head and tail node ids of a link, which are separated by an empty space.
+- ```node.dat```: Each line is formatted as ```{node_id} {node_type}```.
+- ```link.dat```: Each line is formatted as ```{head_node_id} {tail_node_id}```.
 - ```path.dat```: Each line describes a meta-path and its relative weight, which are separated by an empty space. By default, all 1-hop and 2-hop meta-paths are used and each meta-path's weight is set to the inverse of its length. Users can specify their own meta-paths and relative weights.
 
 ### Run

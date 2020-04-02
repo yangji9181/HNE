@@ -30,8 +30,8 @@ mv eigen-eigen-67e894c6cd8f eigen-3.3.3
 ### Input
 
 *Stage 2: Transform* prepares 3 input files stored in ```data/${dataset}```:
-- ```node.dat```: Each line describes the id (string) a node.
-- ```link.dat```: Each line describes the head node id, the tail node id, the type, and the weight of a link, which are separated by empty spaces.
+- ```node.dat```: Each line is formatted as ```{node_id}```.
+- ```link.dat```: Each line is formatted as ```{head_node_id} {tail_node_id} {link_type} {link_weight}```.
 - ```type.dat```: There is only one line in this file, which describes the number of different link types in the targeting dataset.
 
 ### Run

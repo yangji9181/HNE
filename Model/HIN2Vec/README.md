@@ -20,7 +20,7 @@ This implementation relies on 0 external packages.
 ### Input
 
 *Stage 2: Transform* prepares 1 input file stored in ```data/${dataset}```:
-- ```link.dat```: Each line describes the head node id, the head node type, the tail node id, the tail node type, and the link type of a link, which are separated by ```\t```.
+- ```link.dat```: Each line is formatted as ```{head_node_id}\t{head_node_type}\t{tail_node_id}\t{tail_node_type}\t{link_type}```.
 
 ### Run
 

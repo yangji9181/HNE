@@ -20,8 +20,8 @@ This implementation relies on 0 external packages.
 ### Input
 
 *Stage 2: Transform* prepares 3 input files stored in ```data/${dataset}```:
-- ```node.dat```: Each line describes the name (string) and id (string) of a node, which are separated by an empty space.
-- ```link.dat```: Each line describes the head node id, the tail node id, and the type of a link, which are separated by empty spaces.
+- ```node.dat```: Each line is formatted as ```{node_id} {node_id}```.
+- ```link.dat```: Each line is formatted as ```{head_node_id} {tail_node_id} {link_type}```.
 - ```rela.dat```: The first line specifies the number of link types in the targeting dataset. Each following line describes the name (string) and id (string) of a link type, which are separated by an empty space.
 
 ### Run
