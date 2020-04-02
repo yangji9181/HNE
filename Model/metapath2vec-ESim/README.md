@@ -40,9 +40,9 @@ mv eigen-eigen-67e894c6cd8f eigen-3.3.3
 ### Input
 
 This implementation takes 3 input files:
-- ```node.dat```: Each line describes the id (string) and the type (char) of a node, which are separated by an empty space.
-- ```link.dat```: Each line describes the head and tail node ids of a link, which are separated by an empty space.
-- ```path.dat```: Each line describes a meta-path and its relative weight, which are separated by an empty space. By default, all 1-hop and 2-hop meta-paths are used and each meta-path's weight is set to the inverse of its length. Users can specify their own meta-paths and relative weights.
+- ```data/${dataset}/node.dat```: Each line describes the id (string) and the type (char) of a node, which are separated by an empty space.
+- ```data/${dataset}/link.dat```: Each line describes the head and tail node ids of a link, which are separated by an empty space.
+- ```data/${dataset}/path.dat```: Each line describes a meta-path and its relative weight, which are separated by an empty space. By default, all 1-hop and 2-hop meta-paths are used and each meta-path's weight is set to the inverse of its length. Users can specify their own meta-paths and relative weights.
 
 ### Run
 
@@ -52,4 +52,4 @@ Run ```bash run.sh``` to start training.
 ### Output
 
 This implementation generates 1 output file:
-- ```emb.dat```: The first line specifies the parameters used in training. Each following line describes the id and the embeddings of a node. The id and the embeddings are separated by ```\t```. Entries in the embeddings are separated by ``` ```.
+- ```data/${dataset}/emb.dat```: The first line specifies the parameters used in training. Each following line describes the id and the embeddings of a node. The id and the embeddings are separated by ```\t```. Entries in the embeddings are separated by ``` ```.
