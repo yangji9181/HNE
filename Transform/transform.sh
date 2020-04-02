@@ -7,4 +7,7 @@ model='PTE' # choose from 'metapath2vec-ESim', 'PTE', 'HIN2Vec', 'AspEm', 'HEER'
 attributed='False' # choose 'True' or 'False'
 supervised='False' # choose 'True' or 'False'
 
+mkdir ../Model/${model}/data
+mkdir ../Model/${model}/data/${dataset}
+
 python transform.py -dataset ${dataset} -model ${model} -attributed ${attributed} -supervised ${supervised}
