@@ -17,8 +17,8 @@ make
 rescale=0.1
 lr=10
 lrr=10
-batch_size=5000
-iter=5
+batch_size=50
+iter=50
 
 mkdir "${folder}temp/"
 mkdir "${folder}model/"
