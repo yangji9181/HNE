@@ -1,6 +1,8 @@
 # HNE
 Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond.
 
+**Code Release in Progress**
+
 ## Citation
 
 ## Pipeline
