@@ -19,7 +19,7 @@ This implementation relies on 0 external packages.
 
 ### Input
 
-*Stage 2: Transform* prepares 1 input file stored in ```data/${dataset}```:
+*Stage 2: Transform* prepares 1 input file stored in ```data/{dataset}```:
 - ```link.dat```: Each line is formatted as ```{head_node_id}\t{head_node_type}\t{tail_node_id}\t{tail_node_type}\t{link_type}```.
 
 ### Run
@@ -29,5 +29,5 @@ Run ```bash run.sh``` to start training.
 
 ### Output
 
-This implementation generates 1 output file stored in ```data/${dataset}```:
+This implementation generates 1 output file stored in ```data/{dataset}```:
 - ```emb.dat```: The first line specifies the parameters used in training. Each following line describes the id and the embeddings of a node. The id and the embeddings are separated by ```\t```. Entries in the embeddings are separated by ``` ```.
