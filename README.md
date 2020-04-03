@@ -1,6 +1,3 @@
-**Code Release in Progress**
-
-
 # HNE
 Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond. <a href="https://arxiv.org/pdf/2004.00216.pdf">[paper]</a>
 
