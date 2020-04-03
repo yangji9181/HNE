@@ -18,7 +18,6 @@
 This implementation relies on 1 external packages:
 - <a href="https://pytorch.org/">[PyTorch]</a>
 
-
 ### Input
 
 *Stage 2: Transform* prepares 4 input files stored in ```data/{dataset}```:
