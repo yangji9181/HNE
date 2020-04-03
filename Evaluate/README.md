@@ -10,6 +10,7 @@ Users need to specify the following parameters in ```evaluate.sh```:
 - **task**: choose ```nc``` for node classification, ```lp``` for link prediction, or ```both``` for both tasks.
 
 *Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.*
+*Note: Only ```DBLP``` and ```PubMed``` contain node attributes.*
 
 **Node Classification**: <br /> 
 We train a separate linear Support Vector Machine (LinearSVC) based on the learned embeddings on 80% of the labeled nodes and predict on the remaining 20%. We repeat the process for standard five-fold cross validation and compute the average scores regarding **Macro-F1** (across all labels) and **Micro-F1** (across all nodes).
