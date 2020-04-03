@@ -253,8 +253,8 @@ def han_convert(dataset, attributed, supervised):
     with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
         for line in original_node_file:
             line = line[:-1].split('\t')
-            if attributed=='True': new_node_file.write(f'{line[0]}\t{line[2]}\n')
-            elif attributed=='False': new_node_file.write(f'{line[0]}\t{line[2]}\t{line[3]}\n')
+            if attributed=='True': new_node_file.write(f'{line[0]}\t{line[2]}\t{line[3]}\n')
+            elif attributed=='False': new_node_file.write(f'{line[0]}\t{line[2]}\n')
     new_node_file.close()
     
     print(f'HAN: converting {dataset}\'s link file!')
@@ -291,10 +291,10 @@ def han_convert(dataset, attributed, supervised):
     if supervised=='True':
         print(f'HAN: converting {dataset}\'s label file for semi-supervised training!')
         new_label_file = open(f'{model_data_folder}/{label_file}','w')
-        with open(f'{ori_data_folder}/nc/{label_file}','r') as original_label_file:
+        with open(f'{ori_data_folder}/{label_file}','r') as original_label_file:
             for line in original_label_file:
                 line = line[:-1].split('\t')
-                new_label_file.write(f'{line[0]}\t{line[1]}\n')  
+                new_label_file.write(f'{line[0]}\t{line[3]}\n')  
         new_label_file.close()
     
     return
