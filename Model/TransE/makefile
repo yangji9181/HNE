@@ -1,1 +1,0 @@
-g++ src/transE.cpp -o bin/transE -pthread -O3 -march=native

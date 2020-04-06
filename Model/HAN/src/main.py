@@ -76,7 +76,7 @@ def main():
     print(time.strftime("%a, %d %b %Y %H:%M:%S +0000: ", time.localtime()) + 'finish loading', flush=True)    
     
     nhead = list(map(lambda x: int(x), args.nhead.split(',')))
-    nnode, nchannel, nlayer = len(target_pool), len(adjs), len(nhead)
+    nnode, nchannel, nlayer = len(id_name), len(adjs), len(nhead)
     if args.supervised=='False': posi_size, nega_size = len(positive_edges), len(negative_edges)
     if args.attributed=='True': nfeat = features.shape[1]
 

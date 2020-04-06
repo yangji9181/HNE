@@ -73,7 +73,7 @@ class EmbeddingLayerAttri(nn.Module):
     
 class RGCN(BaseRGCN):
     def build_input_layer(self, node_attri):
-        if node_attri:
+        if node_attri is not None:
             return EmbeddingLayerAttri(node_attri)
         return EmbeddingLayer(self.num_nodes, self.h_dim)
 
@@ -91,10 +91,10 @@ class TrainModel(nn.Module):
                  num_hidden_layers=1, dropout=0, use_cuda=False, reg_param=0):
         super(TrainModel, self).__init__()
         
-        if node_attri:
-            self.rgcn = RGCN(node_attri, num_nodes, node_attri.shape[1], o_dim, num_rels * 2, num_bases, num_hidden_layers, dropout, use_cuda)
-        else:
+        if node_attri is None:
             self.rgcn = RGCN(node_attri, num_nodes, o_dim, o_dim, num_rels * 2, num_bases, num_hidden_layers, dropout, use_cuda)
+        else:            
+            self.rgcn = RGCN(node_attri, num_nodes, node_attri.shape[1], o_dim, num_rels * 2, num_bases, num_hidden_layers, dropout, use_cuda)
         self.reg_param = reg_param
         
         if nlabel==0:
@@ -121,7 +121,7 @@ class TrainModel(nn.Module):
             pred = None
         return output, pred
 
-    def regularization_loss(self, embedding):
+    def unsupervised_regularization_loss(self, embedding):
         return torch.mean(embedding.pow(2)) + torch.mean(self.w_relation.pow(2))
 
     def get_unsupervised_loss(self, g, embed, triplets, labels):
@@ -129,8 +129,11 @@ class TrainModel(nn.Module):
         # each row in the triplets is a 3-tuple of (source, relation, destination)
         score = self.calc_score(embed, triplets)
         predict_loss = F.binary_cross_entropy_with_logits(score, labels)
-        reg_loss = self.regularization_loss(embed)
+        reg_loss = self.unsupervised_regularization_loss(embed)
         return predict_loss + self.reg_param * reg_loss
+    
+    def supervised_regularization_loss(self, embedding):
+        return torch.mean(embedding.pow(2))
     
     def get_supervised_loss(self, embed, matched_labels, matched_index, multi):
         # triplets is a list of data samples (positive and negative)
@@ -139,5 +142,5 @@ class TrainModel(nn.Module):
             predict_loss = F.binary_cross_entropy(torch.sigmoid(embed[matched_index]), matched_labels)
         else:
             predict_loss = F.nll_loss(F.log_softmax(embed[matched_index]), matched_labels)
-        reg_loss = self.regularization_loss(embed)
+        reg_loss = self.supervised_regularization_loss(embed)
         return predict_loss + self.reg_param * reg_loss

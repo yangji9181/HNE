@@ -8,5 +8,7 @@ Users need to specify the following parameters in ```transform.sh```:
 - **attributed**: choose ```True``` for attributed training or ```False``` for unattributed training;
 - **supervised**: choose ```True``` for semi-supervised training or ```False``` for unsupervised training.
 
-*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.*
+*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.* <br />  
 *Note: Only ```DBLP``` and ```PubMed``` contain node attributes.*
+
+Run ```bash transform.sh``` to complete *Stage 2: Transform*.

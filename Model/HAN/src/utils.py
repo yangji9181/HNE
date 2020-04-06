@@ -130,7 +130,7 @@ def load_data_unsupervised(args, node, edge, config, meta):
         print('check 3.3', flush=True)
     print('check 4', flush=True)
     
-    if args.attributed="True": name_attr = np.array([name_attr[id_name[i]] for i in range(len(id_name))]).astype(np.float32)
+    if args.attributed=="True": name_attr = np.array([name_attr[id_name[i]] for i in range(len(id_name))]).astype(np.float32)
     
     return adjs, id_name, set(range(id_inc)), positive_edges, name_attr
 
@@ -183,6 +183,7 @@ def load_data_semisupervised(args, node, edge, config, meta):
     with open(node, 'r') as file:
         for line in file:
             if args.attributed=='True': nid, ntype, attr = line[:-1].split('\t')
+            elif args.attributed=='False': nid, ntype = line[:-1].split('\t')
             nid, ntype = int(nid), int(ntype)
             if ntype==target:
                 name_id[nid] = id_inc
@@ -226,6 +227,6 @@ def load_data_semisupervised(args, node, edge, config, meta):
         print('check 3.3', flush=True)
     print('check 4', flush=True)
     
-    if args.attributed="True": name_attr = np.array([name_attr[id_name[i]] for i in range(len(id_name))]).astype(np.float32)
+    if args.attributed=="True": name_attr = np.array([name_attr[id_name[i]] for i in range(len(id_name))]).astype(np.float32)
     
     return adjs, id_name, name_attr

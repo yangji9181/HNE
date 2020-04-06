@@ -4,6 +4,15 @@ We provide 4 HIN benchmark datasets: ```DBLP```, ```Yelp```, ```Freebase```, and
 
 Users can retrieve them <a href="https://drive.google.com/open?id=1Pkbl2wkwAXVRYrUWKpa1C4YQdjl_oIu2">here</a> and unzip the downloaded file to the current folder.
 
+The statistics of each dataset are as follows.
+
+**Dataset** | #node types | #nodes | #link types | #links | #attributes | #attributed nodes | #label types | #labeled nodes
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+**DBLP** | 4 | 1,989,077 | 6 | 275,940,913 | 300 | ALL | 13 | 618
+**Yelp** | 4 | 82,465 | 4 | 30,542,675 | N/A | N/A | 16 | 7,417
+**Freebase** | 8 | 12,164,758 | 36 | 62,982,566 | N/A | N/A | 8 | 47,190
+**PubMed** | 4 | 63,109 | 10 | 244,986 | 200 | ALL | 8 | 454
+
 Each dataset contains:
 - 3 data files (```node.dat```, ```link.dat```, ```label.dat```);
 - 2 evaluation files (```link.dat.test```, ```label.dat.test```);

@@ -11,7 +11,7 @@ link_test_file, label_test_file, label_file = 'link.dat.test', 'label.dat.test',
 def parse_args():
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('-dataset', requried=True, type=str, help='Targeting dataset.', 
+    parser.add_argument('-dataset', required=True, type=str, help='Targeting dataset.', 
                         choices=['DBLP','Freebase','PubMed','Yelp'])
     parser.add_argument('-model', required=True, type=str, help='Targeting model.', 
                         choices=['metapath2vec-ESim','PTE','HIN2Vec','AspEm','HEER','R-GCN','HAN','TransE','DistMult', 'ConvE'])
@@ -52,9 +52,33 @@ def record(args, all_tasks, train_para, all_scores):
     return
 
 
+def check(args):
+    
+    if args.attributed=='True':
+        if args.model not in ['R-GCN', 'HAN']:
+            print(f'{args.model} does not support attributed training!')
+            print('Only R-GCN and HAN support attributed training!')
+            return False
+        if args.dataset not in ['DBLP', 'PubMed']:
+            print(f'{args.dataset} does not support attributed training!')
+            print('Only DBLP and PubMed support attributed training!')
+            return False
+        
+    if args.supervised=='True':
+        if args.model not in ['R-GCN', 'HAN']:
+            print(f'{args.model} does not support semi-supervised training!')
+            print('Only R-GCN and HAN support semi-supervised training!')
+            return False
+        
+    return True
+
+
 def main():
     
     args = parse_args()
+    
+    if not check(args):
+        return
     
     print('Load Embeddings!')
     emb_file_path = f'{model_folder}/{args.model}/data/{args.dataset}/{emb_file}'

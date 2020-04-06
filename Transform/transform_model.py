@@ -203,7 +203,7 @@ def heer_convert(dataset):
 def rgcn_convert(dataset, attributed, supervised):
     
     ori_data_folder = f'{data_folder}/{dataset}'
-    model_data_folder = f'{model_folder}/RGCN/data/{dataset}'
+    model_data_folder = f'{model_folder}/R-GCN/data/{dataset}'
     
     entity_count, relation_count = 0, 0
     with open(f'{ori_data_folder}/{meta_file}','r') as original_meta_file:
@@ -213,7 +213,7 @@ def rgcn_convert(dataset, attributed, supervised):
             if entity=='Node' and info[0]=='Total': entity_count = int(count)
             elif entity=='Edge' and info[0]=='Type': relation_count += 1
                         
-    print(f'RGCN: converting {dataset}\'s link file!')
+    print(f'R-GCN: converting {dataset}\'s link file!')
     new_link_file = open(f'{model_data_folder}/{link_file}','w') 
     new_link_file.write(f'{entity_count} {relation_count}\n')
     with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
@@ -223,7 +223,7 @@ def rgcn_convert(dataset, attributed, supervised):
     new_link_file.close() 
     
     if attributed=='True':
-        print(f'RGCN: converting {dataset}\'s node file for attributed training!')
+        print(f'R-GCN: converting {dataset}\'s node file for attributed training!')
         new_node_file = open(f'{model_data_folder}/{node_file}','w')
         with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
             for line in original_node_file:
@@ -232,7 +232,7 @@ def rgcn_convert(dataset, attributed, supervised):
         new_node_file.close()
 
     if supervised=='True':
-        print(f'RGCN: converting {dataset}\'s label file for semi-supervised training!')
+        print(f'R-GCN: converting {dataset}\'s label file for semi-supervised training!')
         new_label_file = open(f'{model_data_folder}/{label_file}','w')
         with open(f'{ori_data_folder}/{label_file}','r') as original_label_file:
             for line in original_label_file:

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 dataset="PubMed"
 folder="data/${dataset}/"
@@ -17,7 +17,7 @@ make
 rescale=0.1
 lr=10
 lrr=10
-batch_size=50
+batch_size=1024
 iter=50
 
 mkdir "${folder}temp/"

@@ -9,7 +9,7 @@ Users need to specify the following parameters in ```evaluate.sh```:
 - **supervised**: choose ```True``` for semi-supervised training or ```False``` for unsupervised training.
 - **task**: choose ```nc``` for node classification, ```lp``` for link prediction, or ```both``` for both tasks.
 
-*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.*
+*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.* <br />  
 *Note: Only ```DBLP``` and ```PubMed``` contain node attributes.*
 
 **Node Classification**: <br /> 
@@ -17,5 +17,7 @@ We train a separate linear Support Vector Machine (LinearSVC) based on the learn
 
 **Link Prediction**: <br /> 
 We use the Hadamard function to construct feature vectors for node pairs, train a two-class LinearSVC on the 80% training links and evaluate towards the 20% held out links. We repeat the process for standard five-fold cross validation and compute the average scores regarding **AUC** (area under the ROC curve) and **MRR** (mean reciprocal rank).
+
+Run ```bash evaluate.sh``` to complete *Stage 4: Evaluate*.
 
 The evaluation results are stored in ```record.dat``` of the corresponding dataset. 

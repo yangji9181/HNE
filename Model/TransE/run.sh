@@ -7,7 +7,8 @@ link_file="${folder}link.dat"
 rela_file="${folder}rela.dat"
 emb_file="${folder}emb.dat"
 
-make
+mkdir bin
+g++ src/transE.cpp -o bin/transE -pthread -O3 -march=native
 
 threads=6
 size=50

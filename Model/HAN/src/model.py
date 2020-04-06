@@ -150,12 +150,13 @@ class HANModel(nn.Module):
         super(HANModel, self).__init__()
 
         self.HomoAttModels = [HomoAttModel(nfeat, nhid, dropout, alpha, device, nheads, nlayer, neigh_por) for i in range(nchannel)]
-        self.HeteroAttLayer = HeteroAttLayer(nchannel, nhid*nheads[-1], nfeat, device, dropout).to(device)        
+        self.HeteroAttLayer = HeteroAttLayer(nchannel, nhid*nheads[-1], nhid, device, dropout).to(device)        
         
         for i, homo_att in enumerate(self.HomoAttModels):
             self.add_module('homo_att_{}'.format(i), homo_att)
         self.add_module('hetero_att', self.HeteroAttLayer)
         
+        self.supervised = False
         if nlabel!=0:
             self.supervised = True
             self.LinearLayer = torch.nn.Linear(nhid, nlabel).to(device)

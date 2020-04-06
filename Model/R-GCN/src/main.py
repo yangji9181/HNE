@@ -66,7 +66,7 @@ def main(args):
                 train_data, args.graph_batch_size, args.graph_split_size,
                 num_rels, degrees, args.negative_sample, args.edge_sampler, 
                 train_indices, train_labels, multi, nlabels, ntrain, if_train=True, label_batch_size=args.label_batch_size)
-                matched_labels = torch.from_numpy(matched_labels).long()
+            matched_labels = torch.from_numpy(matched_labels).long()
         elif args.supervised=='False':        
             g, node_id, edge_type, node_norm, data, labels = \
             utils.generate_sampled_graph_and_labels_unsupervised(
@@ -84,11 +84,11 @@ def main(args):
         if use_cuda:
             node_id, deg = node_id.cuda(), deg.cuda()
             edge_type, edge_norm = edge_type.cuda(), edge_norm.cuda()
-            if args.supervised=='True': data, labels = data.cuda(), labels.cuda()
-            elif args.supervised=='False': matched_labels = matched_labels.cuda()
+            if args.supervised=='True': matched_labels = matched_labels.cuda()
+            elif args.supervised=='False': data, labels = data.cuda(), labels.cuda()
 
         embed, pred = model(g, node_id, edge_type, edge_norm)
-        if args.supervised=='True': model.get_supervised_loss(pred, matched_labels, matched_index, multi)
+        if args.supervised=='True': loss = model.get_supervised_loss(pred, matched_labels, matched_index, multi)
         elif args.supervised=='False': loss = model.get_unsupervised_loss(g, embed, data, labels)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_norm) # clip gradients
@@ -113,7 +113,7 @@ def main(args):
                 utils.generate_sampled_graph_and_labels_unsupervised(
                     train_data, args.graph_batch_size, args.graph_split_size,
                     num_rels, degrees, args.negative_sample,
-                    sampler="output", batch_num=batch_num)
+                    args.edge_sampler)
 
             # set node/edge feature
             node_id = torch.from_numpy(old_node_id).view(-1, 1).long()
@@ -131,9 +131,6 @@ def main(args):
         
             print(time.strftime("%a, %d %b %Y %H:%M:%S +0000: ", time.localtime()) + 
                   f'finish output batch nubmer {batch_num} -> {batch_total}', flush=True)
-
-        print(time.strftime("%a, %d %b %Y %H:%M:%S +0000: ", time.localtime()) + 
-                  f'check if go over all nodes {len(node_over)} == {num_nodes} == {max(node_over)+1}', flush=True)
 
         utils.save(args, node_emb)
         
@@ -171,6 +168,7 @@ if __name__ == '__main__':
             help="regularization weight")
     parser.add_argument("--grad-norm", type=float, default=1.0,
             help="norm to clip gradient to")
+    parser.add_argument("--label-batch-size", type=int, default=512)
     parser.add_argument("--graph-batch-size", type=int, default=200000,
             help="number of edges to sample in each iteration")
     parser.add_argument("--graph-split-size", type=float, default=0.5,

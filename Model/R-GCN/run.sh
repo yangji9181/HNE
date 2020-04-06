@@ -20,8 +20,9 @@ num_layers=2
 num_epochs=1000
 graph_batch_size=20000
 graph_split_size=0.5
+label_batch_size=64
 
 attributed="False"
 supervised="False"
 
-python3 src/main.py --link ${link_file} --node ${node_file} --label ${label_file} --output ${emb_file} --n-hidden ${size} --negative-sample ${negative} --lr ${lr} --dropout ${dropout} --gpu ${gpu} --n-bases ${num_bases} --n-layers ${num_layers} --n-epochs ${num_epochs} --regularization ${regularization} --grad-norm ${grad_norm} --graph-batch-size ${graph_batch_size} --graph-split-size ${graph_split_size} --edge-sampler ${edge_sampler} --attributed ${attributed} --supervised ${supervised}
+python3 src/main.py --link ${link_file} --node ${node_file} --label ${label_file} --output ${emb_file} --n-hidden ${size} --negative-sample ${negative} --lr ${lr} --dropout ${dropout} --gpu ${gpu} --n-bases ${num_bases} --n-layers ${num_layers} --n-epochs ${num_epochs} --regularization ${regularization} --grad-norm ${grad_norm} --graph-batch-size ${graph_batch_size} --graph-split-size ${graph_split_size} --label-batch-size ${label_batch_size} --edge-sampler ${edge_sampler} --attributed ${attributed} --supervised ${supervised}

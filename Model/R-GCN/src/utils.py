@@ -82,7 +82,7 @@ def load_unsupervised(args, link, node):
 def save(args, embs):
     
     with open(f'{args.output}', 'w') as file:
-        file.write(f'size={args.n_hidden}, negative={args.negative_sample}, lr={args.lr}, dropout={args.dropout}, regularization={args.regularization}, grad_norm={args.grad_norm}, num_bases={args.n_bases}, num_layers={args.n_layers}, num_epochs={epoch}, graph_batch_size={args.graph_batch_size}, graph_split_size={args.graph_split_size}, edge_sampler={args.edge_sampler}, supervised={args.supervised}, attributed={args.attributed}\n')
+        file.write(f'size={args.n_hidden}, negative={args.negative_sample}, lr={args.lr}, dropout={args.dropout}, regularization={args.regularization}, grad_norm={args.grad_norm}, num_bases={args.n_bases}, num_layers={args.n_layers}, num_epochs={args.n_epochs}, graph_batch_size={args.graph_batch_size}, graph_split_size={args.graph_split_size}, edge_sampler={args.edge_sampler}, supervised={args.supervised}, attributed={args.attributed}\n')
         for index, emb in enumerate(embs):
             file.write(f'{index}\t')
             file.write(' '.join(emb.astype(str)))
