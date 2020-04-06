@@ -16,7 +16,7 @@ neigh_por=0.6
 lr=0.005
 weight_decay=0.0005
 batch_size=256
-epochs=5 #00
+epochs=500
 device="cuda"
 
 attributed="False"

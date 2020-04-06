@@ -9,7 +9,7 @@ Users need to specify the following parameters in ```evaluate.sh```:
 - **supervised**: choose ```True``` for semi-supervised training or ```False``` for unsupervised training.
 - **task**: choose ```nc``` for node classification, ```lp``` for link prediction, or ```both``` for both tasks.
 
-*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.* <br />  
+*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```) support attributed or semi-supervised training.* <br /> 
 *Note: Only ```DBLP``` and ```PubMed``` contain node attributes.*
 
 **Node Classification**: <br /> 
