@@ -3,6 +3,15 @@ Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, an
 
 ## Citation
 
+```
+@article{yang2020heterogeneous,
+  title={Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond},
+  author={Yang, Carl and Xiao, Yuxin and Zhang, Yu and Sun, Yizhou and Han, Jiawei},
+  journal={arXiv preprint arXiv:2004.00216},
+  year={2020}
+}
+```
+
 ## Pipeline
 
 ### Stage 1: Data
