@@ -1,6 +1,4 @@
-# Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond
-
-## Benckmark datasets and implementations
+# Benckmark datasets and implementations of HNE
 
 ## Citation
 
