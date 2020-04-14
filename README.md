@@ -1,19 +1,6 @@
-## Implementation of *CondGen*, NeurIPS 2019.
+# Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond
 
-Please cite the following work if you find the code useful.
-
-```
-@inproceedings{yang2018meta,
-	Author = {Yang, Carl and Zhuang, Peiye and Shi, Wenhan and Luu, Alan and Pan, Li},
-	Booktitle = {NeurIPS},
-	Title = {Conditional structure generation through graph variational generative adversarial nets},
-	Year = {2019}
-}
-```
-Contact: Peiye Zhuang (peiye@illinois.edu), Carl Yang (yangji9181@gmail.com)
-
-## Benckmark datasets and implementations of HNE
-Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond. <a href="https://arxiv.org/pdf/2004.00216.pdf">[paper]</a>
+## Benckmark datasets and implementations
 
 ## Citation
 
@@ -28,11 +15,13 @@ Please cite the following work if you find the data/code useful.
 }
 ```
 
+## Contact
+
 Please contact us if you have problems with the data/code, and also if you think your work is relevant but missing from the survey.
 
-Contact: Yuxin Xiao (yuxinx2@illinois.edu), Carl Yang (yangji9181@gmail.com)
+Yuxin Xiao (yuxinx2@illinois.edu), Carl Yang (yangji9181@gmail.com)
 
-## Pipeline
+## Guideline
 
 ### Stage 1: Data
 
