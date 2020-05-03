@@ -1,9 +1,25 @@
-# HNE
-Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond. <a href="https://arxiv.org/pdf/2004.00216.pdf">[paper]</a>
+# Benckmark datasets and implementations of HNE
 
 ## Citation
 
-## Pipeline
+Please cite the following work if you find the data/code useful.
+
+```
+@article{yang2020heterogeneous,
+  title={Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond},
+  author={Yang, Carl and Xiao, Yuxin and Zhang, Yu and Sun, Yizhou and Han, Jiawei},
+  journal={arXiv preprint arXiv:2004.00216},
+  year={2020}
+}
+```
+
+## Contact
+
+Please contact us if you have problems with the data/code, and also if you think your work is relevant but missing from the survey.
+
+Yuxin Xiao (yuxinx2@illinois.edu), Carl Yang (yangji9181@gmail.com)
+
+## Guideline
 
 ### Stage 1: Data
 
