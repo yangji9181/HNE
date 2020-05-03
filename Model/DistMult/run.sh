@@ -24,9 +24,9 @@ size=50
 shape1=5
 hidsize=2048
 
-python src/main.py --preprocess=0 --data=${dataset} --train-path=${train_file} --emb-path=${emb_file} --lr=${lr} --l2=${l2} --lr-decay=${lrdecay} --hidden-drop=${hiddrop} --input-drop=${hiddrop} --feat-drop=${featdrop} --label-smoothing=${labelsm} --epochs=${epochs} --batch-size=${batchsize} --embedding-dim=${size} --embedding-shape1=${shape1} --hidden-size=${hidsize} --loader-threads=${loader_threads}
-
 python src/main.py --preprocess=1 --data=${dataset} --train-path=${train_file} --emb-path=${emb_file} --lr=${lr} --l2=${l2} --lr-decay=${lrdecay} --hidden-drop=${hiddrop} --input-drop=${hiddrop} --feat-drop=${featdrop} --label-smoothing=${labelsm} --epochs=${epochs} --batch-size=${batchsize} --embedding-dim=${size} --embedding-shape1=${shape1} --hidden-size=${hidsize} --loader-threads=${loader_threads}
+
+python src/main.py --preprocess=0 --data=${dataset} --train-path=${train_file} --emb-path=${emb_file} --lr=${lr} --l2=${l2} --lr-decay=${lrdecay} --hidden-drop=${hiddrop} --input-drop=${hiddrop} --feat-drop=${featdrop} --label-smoothing=${labelsm} --epochs=${epochs} --batch-size=${batchsize} --embedding-dim=${size} --embedding-shape1=${shape1} --hidden-size=${hidsize} --loader-threads=${loader_threads}
 
 # remove the directory storing preprocessing data
 home='HOME'
