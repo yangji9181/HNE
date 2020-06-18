@@ -14,12 +14,12 @@ def parse_args():
     parser.add_argument('-dataset', required=True, type=str, help='Targeting dataset.', 
                         choices=['DBLP','Freebase','PubMed','Yelp'])
     parser.add_argument('-model', required=True, type=str, help='Targeting model.', 
-                        choices=['metapath2vec-ESim','PTE','HIN2Vec','AspEm','HEER','R-GCN','HAN','TransE','DistMult', 'ConvE'])
+                        choices=['metapath2vec-ESim','PTE','HIN2Vec','AspEm','HEER','R-GCN','HAN','HGT','TransE','DistMult', 'ConvE'])
     parser.add_argument('-task', required=True, type=str, help='Targeting task.',
                         choices=['nc', 'lp', 'both'])    
-    parser.add_argument('-attributed', required=True, type=str, help='Only R-GCN and HAN support attributed training.',
+    parser.add_argument('-attributed', required=True, type=str, help='Only R-GCN, HAN, and HGT support attributed training.',
                         choices=['True','False'])
-    parser.add_argument('-supervised', required=True, type=str, help='Only R-GCN and HAN support semi-supervised training.', 
+    parser.add_argument('-supervised', required=True, type=str, help='Only R-GCN, HAN, and HGT support semi-supervised training.', 
                         choices=['True','False'])
     
     return parser.parse_args()
@@ -55,9 +55,9 @@ def record(args, all_tasks, train_para, all_scores):
 def check(args):
     
     if args.attributed=='True':
-        if args.model not in ['R-GCN', 'HAN']:
+        if args.model not in ['R-GCN', 'HAN', 'HGT']:
             print(f'{args.model} does not support attributed training!')
-            print('Only R-GCN and HAN support attributed training!')
+            print('Only R-GCN, HAN, and HGT support attributed training!')
             return False
         if args.dataset not in ['DBLP', 'PubMed']:
             print(f'{args.dataset} does not support attributed training!')
@@ -65,9 +65,9 @@ def check(args):
             return False
         
     if args.supervised=='True':
-        if args.model not in ['R-GCN', 'HAN']:
+        if args.model not in ['R-GCN', 'HAN', 'HGT']:
             print(f'{args.model} does not support semi-supervised training!')
-            print('Only R-GCN and HAN support semi-supervised training!')
+            print('Only R-GCN, HAN, and HGT support semi-supervised training!')
             return False
         
     return True
