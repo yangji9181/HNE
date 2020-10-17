@@ -20,7 +20,7 @@ This implementation relies on 2 external packages:
 
 ### Input
 
-*Stage 2: Transform* prepares 4 input files stored in ```data/{dataset}```:
+*Stage 2: Transform* prepares 3 input files stored in ```data/{dataset}```:
 - ```node.dat```: This file is only needed for attributed training, each line is formatted as ```{node_id}\t{node_attributes}``` where entries in ```{node_attributes}``` are separated by ```,```.
 - ```link.dat```: The first line specifies ```{number_of_nodes} {number_of_link_types}```. Each folloing line is formatted as ```{head_node_id} {link_type} {tail_node_id}```.
 - ```label.dat```: This file is only needed for semi-supervised training. Each line is formatted as ```{node_id}\t{node_label}```.

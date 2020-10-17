@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Note: Only 'R-GCN', 'HAN', and 'HGT' support attributed='True' or supervised='True'
+# Note: Only 'R-GCN', 'HAN', 'HGT', and 'MAGNN' support attributed='True' or supervised='True'
 # Note: Only 'DBLP' and 'PubMed' contain node attributes.
 
 dataset='PubMed' # choose from 'DBLP', 'Yelp', 'Freebase', and 'PubMed'
-model='PTE' # choose from 'metapath2vec-ESim', 'PTE', 'HIN2Vec', 'AspEm', 'HEER', 'R-GCN', 'HAN', 'HGT', 'TransE', 'DistMult', and 'ConvE'
+model='PTE' # choose from 'metapath2vec-ESim', 'PTE', 'HIN2Vec', 'AspEm', 'HEER', 'R-GCN', 'HAN', 'HGT', 'MAGNN', 'TransE', 'ComplEx', 'DistMult', and 'ConvE'
 attributed='False' # choose 'True' or 'False'
 supervised='False' # choose 'True' or 'False'
 

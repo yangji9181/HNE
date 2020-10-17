@@ -43,10 +43,10 @@ Please refer to the ```Transform``` folder for more details.
 
 ### Stage 3: Model
 
-We provide 11 HIN baseline implementaions: 
+We provide 13 HIN baseline implementaions: 
 - 5 Proximity-Preserving Methods (```metapath2vec-ESim```, ```PTE```, ```HIN2Vec```, ```AspEm```, ```HEER```); 
-- 3 Message-Passing Methods (```R-GCN```, ```HAN```, ```HGT```); 
-- 3 Relation-Learning Methods (```TransE```, ```DistMult```, ```ConvE```).
+- 4 Message-Passing Methods (```R-GCN```, ```HAN```, ```HGT```, ```MAGNN```); 
+- 4 Relation-Learning Methods (```TransE```, ```ComplEx```, ```DistMult```, ```ConvE```).
 
 Please refer to the ```Model``` folder for more details.
 

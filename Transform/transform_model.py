@@ -344,6 +344,60 @@ def hgt_convert(dataset, attributed, supervised):
     return
 
 
+def magnn_convert(dataset, attributed, supervised):
+    
+    ori_data_folder = f'{data_folder}/{dataset}'
+    model_data_folder = f'{model_folder}/MAGNN/data/{dataset}'
+    
+    print('MAGNN: converting {}\'s node file for {} training!'.format(dataset, 'attributed' if attributed=='True' else 'unattributed'))
+    new_node_file = open(f'{model_data_folder}/{node_file}','w')
+    with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
+        for line in original_node_file:
+            line = line[:-1].split('\t')
+            if attributed=='True': new_node_file.write(f'{line[0]}\t{line[2]}\t{line[3]}\n')
+            elif attributed=='False': new_node_file.write(f'{line[0]}\t{line[2]}\n')
+    new_node_file.close()    
+    
+    print(f'MAGNN: converting {dataset}\'s link file!')
+    new_link_file = open(f'{model_data_folder}/{link_file}','w')
+    with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
+        for line in original_link_file:
+            left, right, ltype, weight = line[:-1].split('\t')
+            new_link_file.write(f'{left}\t{right}\t{ltype}\n')
+    new_link_file.close()
+    
+    print(f'MAGNN: writing {dataset}\'s path file!')
+    next_node = defaultdict(list)
+    with open(f'{ori_data_folder}/{info_file}','r') as original_info_file:
+        start = False
+        for line in original_info_file:
+            if line[:4]=='LINK': 
+                start=True
+                continue
+            if start and line[0]=='\n':
+                break
+            if start:
+                line = line[:-1].split('\t')
+                ltype, snode, enode, _ = list(filter(lambda x: len(x)!=0, line))
+                next_node[snode].append(enode)
+    with open(f'{model_data_folder}/path.dat','w') as new_path_file:
+        for start, ends in next_node.items():
+            for end in ends:
+                new_path_file.write(f'{start}\t{end}\n')
+                if end in next_node:
+                    for twohop in next_node[end]:
+                        new_path_file.write(f'{start}\t{end}\t{twohop}\n')
+    
+    if supervised=='True':
+        print(f'MAGNN: converting {dataset}\'s label file for semi-supervised training!')
+        new_label_file = open(f'{model_data_folder}/{label_file}','w')
+        with open(f'{ori_data_folder}/{label_file}','r') as original_label_file:
+            for line in original_label_file:
+                line = line[:-1].split('\t')
+                new_label_file.write(f'{line[0]}\t{line[3]}\n')  
+        new_label_file.close()
+
+
 def transe_convert(dataset):
     
     ori_data_folder = f'{data_folder}/{dataset}'
@@ -381,6 +435,14 @@ def transe_convert(dataset):
         new_rela_file.write(f'{relation_count}\n')
         for each in range(relation_count):
             new_rela_file.write(f'{each} {each}\n')     
+    
+    return
+
+
+def complex_convert(dataset):
+    
+    ori_data_folder = f'{data_folder}/{dataset}'
+    model_data_folder = f'{model_folder}/ComplEx/data/{dataset}'
     
     return
 
