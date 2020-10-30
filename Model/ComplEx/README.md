@@ -14,11 +14,15 @@
 
 ### Deployment
 
-
+This implementation relies on 1 external packages:
+- <a href="https://pytorch.org/">[PyTorch]</a>
 
 ### Input
 
-
+*Stage 2: Transform* prepares 3 input files stored in ```data/{dataset}```:
+- ```node.dat```: The first line specifies the number of nodes. Each following line is formatted as ```{node_id}\t{node_id}```.
+- ```link.dat```: The first line specifies the number of links. Each following line is formatted as ```{head_node_id} {tail_node_id} {link_type}```.
+- ```rela.dat```: The first line specifies the number of link types. Each following line is formatted as ```{link_name}\t{link_type}```.
 
 ### Run
 

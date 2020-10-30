@@ -1,4 +1,4 @@
-# Benckmark datasets and implementations of HNE
+# Benckmark Datasets and Implementations of HNE
 
 ## Citation
 
@@ -45,8 +45,8 @@ Please refer to the ```Transform``` folder for more details.
 
 We provide 13 HIN baseline implementaions: 
 - 5 Proximity-Preserving Methods (```metapath2vec-ESim```, ```PTE```, ```HIN2Vec```, ```AspEm```, ```HEER```); 
-- 4 Message-Passing Methods (```R-GCN```, ```HAN```, ```HGT```, ```MAGNN```); 
-- 4 Relation-Learning Methods (```TransE```, ```ComplEx```, ```DistMult```, ```ConvE```).
+- 4 Message-Passing Methods (```R-GCN```, ```HAN```, ```MAGNN```, ```HGT```); 
+- 4 Relation-Learning Methods (```TransE```, ```DistMult```, ```ComplEx```, ```ConvE```).
 
 Please refer to the ```Model``` folder for more details.
 

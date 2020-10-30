@@ -300,50 +300,6 @@ def han_convert(dataset, attributed, supervised):
     return
 
 
-def hgt_convert(dataset, attributed, supervised):
-    
-    ori_data_folder = f'{data_folder}/{dataset}'
-    model_data_folder = f'{model_folder}/HGT/data/{dataset}'
-    
-    print('HGT: converting {}\'s node file for {} training!'.format(dataset, 'attributed' if attributed=='True' else 'unattributed'))
-    new_node_file = open(f'{model_data_folder}/{node_file}','w')
-    with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
-        for line in original_node_file:
-            line = line[:-1].split('\t')
-            if attributed=='True': new_node_file.write(f'{line[0]}\t{line[2]}\t{line[3]}\n')
-            elif attributed=='False': new_node_file.write(f'{line[0]}\t{line[2]}\n')
-    new_node_file.close()    
-    
-    print(f'HGT: converting {dataset}\'s link file!')
-    new_link_file = open(f'{model_data_folder}/{link_file}','w')
-    with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
-        for line in original_link_file:
-            left, right, ltype, weight = line[:-1].split('\t')
-            new_link_file.write(f'{left}\t{right}\t{ltype}\n')
-    new_link_file.close()
-    
-    if supervised=='True':
-        print(f'HGT: converting {dataset}\'s label file for semi-supervised training!')
-        labeled_type, nlabel, begin = None, -1, False
-        with open(f'{ori_data_folder}/{info_file}', 'r') as file:
-            for line in file:
-                if line.startswith('Targeting: Label Type'): 
-                    labeled_type = int(line.split(' ')[-1])
-                elif line=='TYPE\tCLASS\tMEANING\n':
-                    begin = True
-                elif begin:
-                    nlabel += 1    
-        new_label_file = open(f'{model_data_folder}/{label_file}','w')
-        new_label_file.write(f'{labeled_type}\t{nlabel}\n')
-        with open(f'{ori_data_folder}/{label_file}','r') as original_label_file:
-            for line in original_label_file:
-                line = line[:-1].split('\t')
-                new_label_file.write(f'{line[0]}\t{line[3]}\n')
-        new_label_file.close()
-        
-    return
-
-
 def magnn_convert(dataset, attributed, supervised):
     
     ori_data_folder = f'{data_folder}/{dataset}'
@@ -396,6 +352,52 @@ def magnn_convert(dataset, attributed, supervised):
                 line = line[:-1].split('\t')
                 new_label_file.write(f'{line[0]}\t{line[3]}\n')  
         new_label_file.close()
+        
+    return
+
+
+def hgt_convert(dataset, attributed, supervised):
+    
+    ori_data_folder = f'{data_folder}/{dataset}'
+    model_data_folder = f'{model_folder}/HGT/data/{dataset}'
+    
+    print('HGT: converting {}\'s node file for {} training!'.format(dataset, 'attributed' if attributed=='True' else 'unattributed'))
+    new_node_file = open(f'{model_data_folder}/{node_file}','w')
+    with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
+        for line in original_node_file:
+            line = line[:-1].split('\t')
+            if attributed=='True': new_node_file.write(f'{line[0]}\t{line[2]}\t{line[3]}\n')
+            elif attributed=='False': new_node_file.write(f'{line[0]}\t{line[2]}\n')
+    new_node_file.close()    
+    
+    print(f'HGT: converting {dataset}\'s link file!')
+    new_link_file = open(f'{model_data_folder}/{link_file}','w')
+    with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
+        for line in original_link_file:
+            left, right, ltype, weight = line[:-1].split('\t')
+            new_link_file.write(f'{left}\t{right}\t{ltype}\n')
+    new_link_file.close()
+    
+    if supervised=='True':
+        print(f'HGT: converting {dataset}\'s label file for semi-supervised training!')
+        labeled_type, nlabel, begin = None, -1, False
+        with open(f'{ori_data_folder}/{info_file}', 'r') as file:
+            for line in file:
+                if line.startswith('Targeting: Label Type'): 
+                    labeled_type = int(line.split(' ')[-1])
+                elif line=='TYPE\tCLASS\tMEANING\n':
+                    begin = True
+                elif begin:
+                    nlabel += 1    
+        new_label_file = open(f'{model_data_folder}/{label_file}','w')
+        new_label_file.write(f'{labeled_type}\t{nlabel}\n')
+        with open(f'{ori_data_folder}/{label_file}','r') as original_label_file:
+            for line in original_label_file:
+                line = line[:-1].split('\t')
+                new_label_file.write(f'{line[0]}\t{line[3]}\n')
+        new_label_file.close()
+        
+    return
 
 
 def transe_convert(dataset):
@@ -439,20 +441,12 @@ def transe_convert(dataset):
     return
 
 
-def complex_convert(dataset):
-    
-    ori_data_folder = f'{data_folder}/{dataset}'
-    model_data_folder = f'{model_folder}/ComplEx/data/{dataset}'
-    
-    return
-
-
 def distmult_convert(dataset):
     
     ori_data_folder = f'{data_folder}/{dataset}'
     model_data_folder = f'{model_folder}/DistMult/data/{dataset}'
                         
-    print(f'DistMult: converting link file!')
+    print(f'DistMult: converting {dataset}\'s link file!')
     new_link_file = open(f'{model_data_folder}/{link_file}','w')
     with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
         for line in original_link_file:
@@ -463,12 +457,54 @@ def distmult_convert(dataset):
     return
 
 
+def complex_convert(dataset):
+    
+    ori_data_folder = f'{data_folder}/{dataset}'
+    model_data_folder = f'{model_folder}/ComplEx/data/{dataset}'
+    
+    entity_count, relation_count, triplet_count = 0, 0, 0
+    with open(f'{ori_data_folder}/{meta_file}','r') as original_meta_file:
+        for line in original_meta_file:
+            entity, info, _, count = line[:-1].split(' ')
+            info = info[:-1].split('_')
+            if entity=='Node' and info[0]=='Total': entity_count = int(count)
+            elif entity=='Edge' and info[0]=='Total': triplet_count = int(count)
+            elif entity=='Edge' and info[0]=='Type': relation_count += 1
+        
+        
+    print(f'ComplEx: converting {dataset}\'s node file!')
+    new_node_file = open(f'{model_data_folder}/{node_file}','w')
+    new_node_file.write(f'{entity_count}\n')
+    with open(f'{ori_data_folder}/{node_file}','r') as original_node_file:
+        for line in original_node_file:
+            line = line[:-1].split('\t')
+            new_node_file.write(f'{line[0]}\t{line[0]}\n')    
+    new_node_file.close()
+    
+    print(f'ComplEx: writing {dataset}\'s relation file!')
+    with open(f'{model_data_folder}/rela.dat','w') as new_rela_file:
+        new_rela_file.write(f'{relation_count}\n')
+        for each in range(relation_count):
+            new_rela_file.write(f'{each}\t{each}\n')  
+    
+    print(f'ComplEx: converting {dataset}\'s link file!') 
+    new_link_file = open(f'{model_data_folder}/{link_file}','w') 
+    new_link_file.write(f'{triplet_count}\n')
+    with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
+        for line in original_link_file:
+            left, right, ltype, weight = line[:-1].split('\t')
+            new_link_file.write(f'{left} {right} {ltype}\n')
+    new_link_file.close()
+    
+    return
+
+
 def conve_convert(dataset):
     
     ori_data_folder = f'{data_folder}/{dataset}'
     model_data_folder = f'{model_folder}/ConvE/data/{dataset}'
                         
-    print(f'ConvE: converting link file!')
+    print(f'ConvE: converting {dataset}\'s link file!')
     new_link_file = open(f'{model_data_folder}/{link_file}','w')
     with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
         for line in original_link_file:

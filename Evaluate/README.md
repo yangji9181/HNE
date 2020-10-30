@@ -4,12 +4,12 @@ This stage evaluates the output embeddings based on specific tasks.
 
 Users need to specify the following parameters in ```evaluate.sh```:
 - **dataset**: choose from ```DBLP```, ```Yelp```, ```Freebase```, and ```PubMed```;
-- **model**: choose from ```metapath2vec-ESim```, ```PTE```, ```HIN2Vec```, ```AspEm```, ```HEER```, ```R-GCN```, ```HAN```, ```HGT```, ```MAGNN```, ```TransE```, ```ComplEx```, ```DistMult```, ```ConvE```;
+- **model**: choose from ```metapath2vec-ESim```, ```PTE```, ```HIN2Vec```, ```AspEm```, ```HEER```, ```R-GCN```, ```HAN```, ```MAGNN```, ```HGT```, ```TransE```, ```DistMult```, ```ComplEx```, ```ConvE```;
 - **attributed**: choose ```True``` for attributed training or ```False``` for unattributed training;
 - **supervised**: choose ```True``` for semi-supervised training or ```False``` for unsupervised training.
 - **task**: choose ```nc``` for node classification, ```lp``` for link prediction, or ```both``` for both tasks.
 
-*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```, ```HGT```, ```MAGNN```) support attributed or semi-supervised training.* <br /> 
+*Note: Only Message-Passing Methods (```R-GCN```, ```HAN```, ```MAGNN```, ```HGT```) support attributed or semi-supervised training.* <br /> 
 *Note: Only ```DBLP``` and ```PubMed``` contain node attributes.*
 
 **Node Classification**: <br /> 
