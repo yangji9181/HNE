@@ -469,8 +469,7 @@ def complex_convert(dataset):
             info = info[:-1].split('_')
             if entity=='Node' and info[0]=='Total': entity_count = int(count)
             elif entity=='Edge' and info[0]=='Total': triplet_count = int(count)
-            elif entity=='Edge' and info[0]=='Type': relation_count += 1
-        
+            elif entity=='Edge' and info[0]=='Type': relation_count += 1        
         
     print(f'ComplEx: converting {dataset}\'s node file!')
     new_node_file = open(f'{model_data_folder}/{node_file}','w')
