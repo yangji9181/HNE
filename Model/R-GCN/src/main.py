@@ -82,7 +82,7 @@ def main(args):
         
         deg = g.in_degrees(range(g.number_of_nodes())).float().view(-1, 1)
         if use_cuda:
-            node_id, deg = node_id.cuda(), deg.cuda()
+            node_id, deg, g = node_id.cuda(), deg.cuda(), g.to('cuda')
             edge_type, edge_norm = edge_type.cuda(), edge_norm.cuda()
             if args.supervised=='True': matched_labels = matched_labels.cuda()
             elif args.supervised=='False': data, labels = data.cuda(), labels.cuda()
@@ -120,7 +120,7 @@ def main(args):
             edge_type = torch.from_numpy(edge_type)
             edge_norm = node_norm_to_edge_norm(g, torch.from_numpy(node_norm).view(-1, 1))
             if use_cuda:
-                node_id = node_id.cuda()
+                node_id, g = node_id.cuda(), g.to('cuda')
                 edge_type, edge_norm = edge_type.cuda(), edge_norm.cuda()
 
             embed, _ = model(g, node_id, edge_type, edge_norm)

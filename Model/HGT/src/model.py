@@ -46,7 +46,7 @@ class HGTConv(MessagePassing):
         glorot(self.relation_msg)
         
     def forward(self, node_inp, node_type, edge_index, edge_type, edge_time):
-        return self.propagate(edge_index, node_inp=node_inp, node_type=node_type, edge_type=edge_type, edge_time=edge_time)
+        return self.propagate(edge_index, node_inp=node_inp, node_type=node_type.reshape(-1,1), edge_type=edge_type, edge_time=edge_time)
 
     def message(self, edge_index_i, node_inp_i, node_inp_j, node_type_i, node_type_j, edge_type, edge_time):
         '''
@@ -70,7 +70,7 @@ class HGTConv(MessagePassing):
                     '''
                         idx is all the edges with meta relation <source_type, relation_type, target_type>
                     '''
-                    idx = (edge_type==int(relation_type)) & tb
+                    idx = (edge_type==int(relation_type)) & tb.reshape(-1)
                     if idx.sum() == 0:
                         continue
                     '''
@@ -109,7 +109,7 @@ class HGTConv(MessagePassing):
         aggr_out = F.gelu(aggr_out)
         res = torch.zeros(aggr_out.size(0), self.out_dim).to(node_inp.device)
         for target_type in range(self.num_types):
-            idx = (node_type==int(target_type))
+            idx = (node_type==int(target_type)).reshape(-1)
             if idx.sum() == 0:
                 continue
             '''
