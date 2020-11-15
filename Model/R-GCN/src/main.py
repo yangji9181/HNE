@@ -66,7 +66,8 @@ def main(args):
                 train_data, args.graph_batch_size, args.graph_split_size,
                 num_rels, degrees, args.negative_sample, args.edge_sampler, 
                 train_indices, train_labels, multi, nlabels, ntrain, if_train=True, label_batch_size=args.label_batch_size)
-            matched_labels = torch.from_numpy(matched_labels).long()
+            if multi: matched_labels = torch.from_numpy(matched_labels).float()
+            else: matched_labels = torch.from_numpy(matched_labels).long()
         elif args.supervised=='False':        
             g, node_id, edge_type, node_norm, data, labels = \
             utils.generate_sampled_graph_and_labels_unsupervised(
