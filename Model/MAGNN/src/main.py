@@ -86,7 +86,7 @@ def main():
     for epoch in range(args.nepoch):            
 
         batch_targets, batch_labels = batcher.next()
-        layer_ntype_mptype_g, layer_ntype_mptype_mpinstances, layer_ntype_mptype_iftargets, batch_ntype_orders = prepare_minibatch(set(batch_targets.flatten()), node_mptype_mpinstances, type_mask, node_order, args.nlayer, args.sampling)
+        layer_ntype_mptype_g, layer_ntype_mptype_mpinstances, layer_ntype_mptype_iftargets, batch_ntype_orders = prepare_minibatch(set(batch_targets.flatten()), node_mptype_mpinstances, type_mask, node_order, args.nlayer, args.sampling, args.device)
         
         batch_node_features, batch_node_preds = magnn(layer_ntype_mptype_g, layer_ntype_mptype_mpinstances, layer_ntype_mptype_iftargets, batch_ntype_orders)
         

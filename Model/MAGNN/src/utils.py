@@ -1,10 +1,10 @@
+import dgl
 import time
 import torch
 import random
 import numpy as np
 import networkx as nx
 
-from dgl import DGLGraph
 from collections import defaultdict
 
 
@@ -180,7 +180,7 @@ def sample_mpinstances_perntype(targets, node_mptype_mpinstances, sampling):
     return mptype_mpinstances
 
 
-def prepare_minibatch(targets, node_mptype_mpinstances, type_mask, node_orders, nlayer, sampling):
+def prepare_minibatch(targets, node_mptype_mpinstances, type_mask, node_orders, nlayer, sampling, device):
     
     layer_ntype_mptype_g = [defaultdict(dict) for _ in range(nlayer)]
     layer_ntype_mptype_mpinstances = [defaultdict(dict) for _ in range(nlayer)]
@@ -202,8 +202,7 @@ def prepare_minibatch(targets, node_mptype_mpinstances, type_mask, node_orders, 
                 ng = nx.MultiDiGraph()
                 ng.add_nodes_from(curr_targets)
                 ng.add_edges_from(np.vstack([mpinstances[:,0], mpinstances[:,-1]]).T)
-                g = DGLGraph(multigraph=True)
-                g.from_networkx(ng)
+                g = dgl.from_networkx(ng).to(device)
 
                 iftargets = {src:False for src in mpinstances[:,0]}
                 iftargets.update({dst:True for dst in curr_targets})
