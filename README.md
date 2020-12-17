@@ -1,4 +1,4 @@
-# Benckmark Datasets and Implementations of HNE
+# Heterogeneous Network Representation Learning Benchmark with Preprocessed Datasets and Algorithm Implementations
 
 ## Citation
 
@@ -6,9 +6,9 @@ Please cite the following work if you find the data/code useful.
 
 ```
 @article{yang2020heterogeneous,
-  title={Heterogeneous Network Representation Learning: Survey, Benchmark, Evaluation, and Beyond},
+  title={Heterogeneous Network Representation Learning: A Unified Framework with Survey and Benchmark},
   author={Yang, Carl and Xiao, Yuxin and Zhang, Yu and Sun, Yizhou and Han, Jiawei},
-  journal={arXiv preprint arXiv:2004.00216},
+  journal={TKDE},
   year={2020}
 }
 ```
